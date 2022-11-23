@@ -13,6 +13,7 @@ public class Player {
 		super();
 		this.setName(name);
 		this.setCards(new ArrayList<Card>());
+		this.setChosenCards(new ArrayList<Card>());
 	}
 
 	public String getName() {

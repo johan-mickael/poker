@@ -46,10 +46,13 @@ public class Main {
 		p2.give(c9);
 		p2.give(c10);
 		
+		p1.chooseCard(c1);
+		p1.chooseCard(c2);
+		
 //		
 //
 //	
-		Hand hand1 = new Hand(p1.getCards());
+		Hand hand1 = new Hand(p1.getChosenCards());
 		Hand hand2 = new Hand(p2.getCards());
 		
 		for (Card card : p1.getCards()) {
