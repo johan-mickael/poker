@@ -100,7 +100,7 @@ public class Hand implements Comparable<Hand> {
 		if (this.cards.size() < 4) {
 			return false;
 		}
-		if (this.mappedCard.size() == 2 && this.getMappedCardValue() == 8) {
+		if (this.mappedCard.size() == 2 && this.getMappedCardValue() == 4) {
 			this.setValue(FOUR_OF_A_KIND);
 			return true;
 		}
@@ -112,7 +112,7 @@ public class Hand implements Comparable<Hand> {
 			return false;
 		}
 		
-		if (this.mappedCard.size() == 2 && this.getMappedCardValue() == 4) {
+		if (this.mappedCard.size() == 2 && this.getMappedCardValue() == 6) {
 			this.setValue(FULL_HOUSE);
 			return true;
 		}
