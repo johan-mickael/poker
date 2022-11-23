@@ -89,7 +89,7 @@ public class Hand implements Comparable<Hand> {
 		if (this.cards.size() < 5) {
 			return false;
 		}
-		if (this.getCards().get(0).getRank() == Card.primeCardRank[12] && this.checkStraightFlush()) {
+		if (this.getCards().get(0).getRank() == Card.getPrimeCardRanks()[12] && this.checkStraightFlush()) {
 			this.setValue(ROYAL_FLUSH);
 			return true;
 		}

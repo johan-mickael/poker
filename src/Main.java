@@ -5,6 +5,8 @@ import poker.card.Card;
 import poker.game.Game;
 import poker.game.Hand;
 import poker.game.Player;
+import poker.gui.GamePanel;
+import poker.gui.PokerFrame;
 
 public class Main {
 
@@ -69,6 +71,8 @@ public class Main {
 		System.out.println(hand2.getValue() + " " + hand2.getHandValue());
 //	
 		System.out.println(hand1.winOver(hand2));
+		
+		new PokerFrame(new GamePanel());
 		
 	}
 

@@ -1,5 +1,6 @@
 package poker.card;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,6 +8,8 @@ public class Card implements Comparable<Card> {
 	private int rank;
 	private String color;
 	private String label;
+	private Color colorGUI;
+	private String iconColor;
 
 	public static final String TWO_LBL = "2";
 	public static final String THREE_LBL = "3";
@@ -26,12 +29,16 @@ public class Card implements Comparable<Card> {
 	public static final String DIAMOND = "diamond";
 	public static final String SPADE = "spade";
 	public static final String CLUB = "club";
-
-	public static final String[] cardsLabels = { TWO_LBL, THREE_LBL, FOR_LBL, FIVE_LBL, SIX_LBL, SEVEN_LBL, EIGHT_LBL,
-			NINE_LBL, TEN_LBL, JACK_LBL, QUEEN_LBL, KING_LBL, AS_LBL, };
-
-	public static final Integer[] primeCardRank = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41 };
-//	public static final Integer[] primeCardRank = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
+	
+	public static final String I_HEART = "♥";
+	public static final String I_DIAMOND = "♦";
+	public static final String I_SPADE = "♠";
+	public static final String I_CLUB = "♣";
+	
+	public static final Color RED = new Color(255, 0, 0);
+	public static final Color BLACK = new Color(0, 0, 0);
+	public static final Color WHITE = new Color(255, 255, 255);
+	public static final Color LIGHT = new Color(240, 240, 240);
 
 	public Card(int rank, String color, String label) {
 		super();
@@ -45,7 +52,7 @@ public class Card implements Comparable<Card> {
 	}
 
 	public void setRank(int rank) {
-		this.rank = Card.primeCardRank[rank - 2];
+		this.rank = Card.getPrimeCardRanks()[rank - 2];
 	}
 
 	public String getColor() {
@@ -54,10 +61,35 @@ public class Card implements Comparable<Card> {
 
 	public void setColor(String color) {
 		this.color = color;
+		switch (color) {
+			case HEART:
+				setColorGUI(RED);
+				setIconColor(I_HEART);
+				break;
+			case DIAMOND:
+				setColorGUI(RED);
+				setIconColor(I_DIAMOND);
+				break;
+			case SPADE:
+				setColorGUI(BLACK);
+				setIconColor(I_SPADE);
+				break;
+			case CLUB:
+				setColorGUI(BLACK);
+				setIconColor(I_CLUB);
+				break;
+			default:
+				// throw error here
+				System.out.println("Invalid card colour found");
+		}
 	}
 
 	public String getLabel() {
 		return label;
+	}
+	
+	public String getText() {
+		return this.getNormalizedRankLabel() + "" + this.getIconColor();
 	}
 
 	public void setLabel(String label) {
@@ -67,14 +99,30 @@ public class Card implements Comparable<Card> {
 		this.label = label;
 	}
 
+	public Color getColorGUI() {
+		return colorGUI;
+	}
+
+	public void setColorGUI(Color colorGUI) {
+		this.colorGUI = colorGUI;
+	}
+
+	public String getIconColor() {
+		return iconColor;
+	}
+
+	public void setIconColor(String iconColor) {
+		this.iconColor = iconColor;
+	}
+
 	public static String[] getAllCardColors() {
 		String[] colors = { HEART, DIAMOND, SPADE, CLUB, };
 		return colors;
 	}
 
-	protected String getNormalizedRankLabel() {
-		List<Integer> list = Arrays.asList(Card.primeCardRank);
-		return Card.cardsLabels[list.indexOf(this.rank)];
+	public String getNormalizedRankLabel() {
+		List<Integer> list = Arrays.asList(Card.getPrimeCardRanks());
+		return Card.getCardLabels()[list.indexOf(this.rank)];
 	}
 
 	public boolean hasSameColor(Card card) {
@@ -91,9 +139,9 @@ public class Card implements Comparable<Card> {
 
 	public boolean isStraight(Card card, boolean descending) {
 		if (descending) {
-			return Arrays.binarySearch(Card.primeCardRank, this.rank) == Arrays.binarySearch(Card.primeCardRank, card.rank)+ 1;
+			return Arrays.binarySearch(Card.getPrimeCardRanks(), this.rank) == Arrays.binarySearch(Card.getPrimeCardRanks(), card.rank)+ 1;
 		}
-		return Arrays.binarySearch(Card.primeCardRank, this.rank) == Arrays.binarySearch(Card.primeCardRank, card.rank)- 1;
+		return Arrays.binarySearch(Card.getPrimeCardRanks(), this.rank) == Arrays.binarySearch(Card.getPrimeCardRanks(), card.rank)- 1;
 	}
 
 	public boolean isStraightAndHasSameColor(Card card, boolean descending) {
@@ -104,5 +152,31 @@ public class Card implements Comparable<Card> {
 	public int compareTo(Card c) {
 		return Integer.compare(this.getRank(), c.getRank());
 	}
+	
+	public static String[] getCardColors() {
+		String[] values = { HEART, DIAMOND, SPADE, CLUB };
+		return values;
+	}
+	
+	public static String[] getCardIconColors() {
+		String[] values = { I_HEART, I_DIAMOND, I_SPADE, I_CLUB };
+		return values;
+	}
+	
+	public static String[] getCardLabels() {
+		String[] values = { TWO_LBL, THREE_LBL, FOR_LBL, FIVE_LBL, SIX_LBL, SEVEN_LBL, EIGHT_LBL,
+				NINE_LBL, TEN_LBL, JACK_LBL, QUEEN_LBL, KING_LBL, AS_LBL };
+		return values;
+	}
 
+	public static Color[] cardsIconsColorsGUI() {
+		Color[] values = { RED, RED, BLACK, BLACK };
+		return values;
+	}
+	public static Integer[] getPrimeCardRanks() {
+		Integer[] values = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41 };
+		return values;
+	}
+	
+	
 }
