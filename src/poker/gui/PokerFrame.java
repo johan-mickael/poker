@@ -15,6 +15,7 @@ public class PokerFrame extends JFrame {
 	private GamePanel gamePanel;
 	
 	public PokerFrame(Game game) {
+		this.setTitle("🃏 Low cost poker :)");
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.pack();
