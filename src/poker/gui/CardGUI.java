@@ -75,7 +75,7 @@ public class CardGUI {
 		this.g2d.drawString(
 			this.card.getIconColor(), 
 			this.getPosition().getX() + (WIDTH/2) - ((iconColorSize/2)-5), 
-			this.position.getY()+(HEIGHT/2) + ((iconColorSize/2)-10)
+			this.position.getY()+(HEIGHT/2) + ((iconColorSize/2)-10) 
 		);
 	}
 	
