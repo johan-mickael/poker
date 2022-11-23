@@ -1,8 +1,11 @@
 package poker.game;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 import poker.card.Card;
+import poker.gui.CardGUI;
+import util.Position;
 
 public class Player {
 	private String name;
@@ -63,6 +66,18 @@ public class Player {
 	
 	public void undoCard(Card card) {
 		this.chosenCards.remove(card);
+	}
+	
+	public List<CardGUI> makeCardsGUI(Graphics g, int yPosition) {
+		List<CardGUI> cardsGUI = new ArrayList<CardGUI>();
+		int xPosition = 10, margin = 10;
+		for (Card card: this.cards) {
+			Position p = new Position(xPosition, yPosition);
+			cardsGUI.add(new CardGUI(card, p, g));
+			
+			xPosition += CardGUI.WIDTH + margin;
+		}
+		return cardsGUI;
 	}
 		
 }

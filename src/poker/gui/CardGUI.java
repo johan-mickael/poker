@@ -1,7 +1,5 @@
 package poker.gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -14,8 +12,8 @@ public class CardGUI {
 	private Position position;
 	private Graphics2D g2d;
 	
-	private static final int WIDTH = 100;
-	private static final int HEIGHT = 120;
+	public static final int WIDTH = 100;
+	public static final int HEIGHT = 120;
 	public static final int FONT_SIZE = 20;
 	
 	public CardGUI(Card card, Position position, Graphics g) {
@@ -49,7 +47,6 @@ public class CardGUI {
 	}
 
 	public void draw() {
-		
 		this.g2d.setColor(Card.LIGHT);
 		this.g2d.fillRect(this.position.getX(), this.position.getY(), WIDTH, HEIGHT);
 		this.g2d.setColor(this.card.getColorGUI());

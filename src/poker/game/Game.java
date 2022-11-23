@@ -18,6 +18,7 @@ public class Game {
 		}
 		this.shuffle = shuffle;
 		this.initGame();
+		this.initComputerOpponent();
 	}
 
 	public void initGame() {
@@ -49,7 +50,12 @@ public class Game {
 	}
 
 	public void addPlayer(Player player) {
-		this.players.add(player);
+		if (this.players.size() <= 2) {
+			this.players.add(player);
+			return;
+		}
+		// Throw exception here
+		System.out.println("This version only supports 2 players for the moment.");
 	}
 	
 	public void giveCard(Player player) {
@@ -79,6 +85,19 @@ public class Game {
 	
 	public void restart() {
 		this.initDeck();
+	}
+	
+	public void initComputerOpponent() {
+		Player computer = new Player("CPU");
+		this.addPlayer(computer);
+	}
+	
+	public Player getCPU() {
+		return this.players.get(0);
+	}
+	
+	public Player getPlayer() {
+		return this.players.get(1);
 	}
 	
 }
